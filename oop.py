@@ -37,6 +37,7 @@
 
 #PARENT AND CHILD
 class Employees:
+    a = 10
     def __init__(self, name, last) -> None:
         self.name = name
         self.last = last
@@ -52,7 +53,15 @@ david = Employees('David', "Foo")
 lucas = Supervisors('Lucas', 'Toni', 'apple')
 emily = Chefs('Emily', 'Zhue')
 
-print(david.last)
-print(lucas.password)
-print(emily.leave_request(5))
+# print(david.last)
+# print(lucas.password)
+# print(emily.leave_request(5))
+# print(issubclass(Supervisors, Chefs))
+# print(isinstance(david,Chefs))
 
+object = {
+    'captain': 'lucas',
+    'pirate': 'david' 
+}
+
+print(david)
