@@ -2,28 +2,31 @@ import abc
 
 
 class TreeNode:
-  def __init__(self, value):
-    self.value = value # data
-    self.children = [] # references to other nodes
+    def __init__(self, value):
+        self.value = value # data
+        self.children = [] # references to other nodes
 
-  def add_child(self, child_node):
-    # creates parent-child relationship
-    print("Adding " + child_node.value)
-    self.children.append(child_node) 
-    
-  def remove_child(self, child_node):
-    # removes parent-child relationship
-    print("Removing " + child_node.value + " from " + self.value)
-    self.children = [child for child in self.children 
-                     if child is not child_node]
+    def add_child(self, child_node):
+        # creates parent-child relationship
+        # print("Adding " + child_node.value)
+        self.children.append(child_node) 
+        
+    def remove_child(self, child_node):
+        # removes parent-child relationship
+        print("Removing " + child_node.value + " from " + self.value)
+        self.children = [child for child in self.children 
+                        if child is not child_node]
 
-  def traverse(self):
-    # moves through each node referenced from self downwards
-    nodes_to_visit = [self]
-    while len(nodes_to_visit) > 0:
-      current_node = nodes_to_visit.pop()
-      print(' ----> ' + current_node.value)
-      nodes_to_visit += current_node.children
+    def traverse(self):
+        # moves through each node referenced from self downwards
+        nodes_to_visit = [self]
+        while len(nodes_to_visit) > 0:
+            current_node = nodes_to_visit.pop()
+            print(' ----> ' + current_node.value)
+            nodes_to_visit += current_node.children
+
+    # def __str__(self) -> str:
+    #     return "value:% " % (self.value) 
 
 root = TreeNode('CEO - Thanh')
 
@@ -51,17 +54,6 @@ vp_public_relation = TreeNode('VP of Public Relation - Tom')
 vp_pr_assitant = TreeNode('PR Assistant - Bigmouth')
 root.add_child(vp_public_relation)
 vp_public_relation.add_child(vp_pr_assitant)
-
-#design department
-vp_of_design = TreeNode('VP of Design - Jenny')
-uxui_designer_1 = TreeNode('UX/UI Designer - Christina')
-uxui_designer_2 = TreeNode('UX/UI Designer - Luigi')
-uxui_designer_3 = TreeNode('UX/UI Designer - Mairo')
-
-root.add_child(vp_of_design)
-vp_of_design.add_child(uxui_designer_1)
-vp_of_design.add_child(uxui_designer_2)
-vp_of_design.add_child(uxui_designer_3)
 
 
 #product department
@@ -96,5 +88,4 @@ engineering_staff_1.add_child(engineering_junior_2)
 engineering_staff_1.add_child(engineering_junior_3)
 engineering_staff_1.add_child(engineering_junior_4)
 
-root.value = abc
-print(abc)
+print(root)

@@ -57,11 +57,12 @@ emily = Chefs('Emily', 'Zhue')
 # print(lucas.password)
 # print(emily.leave_request(5))
 # print(issubclass(Supervisors, Chefs))
-# print(isinstance(david,Chefs))
+# print(isinstance(emily,Chefs))
 
-object = {
+dict = {
     'captain': 'lucas',
-    'pirate': 'david' 
+    'pirate': ['david', 'luigi', 'danforth'],
+    'dangit': 1 
 }
 
-print(david)
+print(dict['dangit'])
