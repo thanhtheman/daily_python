@@ -66,3 +66,8 @@ dict = {
 }
 
 print(dict['dangit'])
+
+call_stack = [{'n_value': 4}, {'n_value': 3}, {'n_value': 2}]
+return_value = call_stack.pop()
+
+print(return_value)
