@@ -11,3 +11,7 @@ def isPalindrome(str):
 print(isPalindrome('rtbtr'))
 
 # this algorithm does the work but it will do it twice as it has to iterate through out the list.
+
+x = range(100)
+y = x[15]
+print(y)
