@@ -1,13 +1,16 @@
+from dotenv import load_dotenv
 from email.message import EmailMessage
+import os
 import ssl
 import smtplib
+load_dotenv()
 
 email_sender = 'thanhb.quach@gmail.com'
-email_password = 'pcnesmkcrccdlumz'
+email_password = os.getenv("GMAIL_PASSWORD")
 email_receiver ='thanh.ecommerce2021@gmail.com'
 
-subject = 'Sending email with Python'
-body = """Take a tutorial from freecodecamp, learn it piece by piece"""
+subject = 'Sending email with Python is easy'
+body = """Take a tutorial from freecodecamp, learn it piece by piece, break it down to the core"""
 
 em = EmailMessage()
 em['From'] = email_sender
