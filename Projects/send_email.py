@@ -9,17 +9,17 @@ email_sender = 'thanhb.quach@gmail.com'
 email_password = os.getenv("GMAIL_PASSWORD")
 email_receiver ='thanh.ecommerce2021@gmail.com'
 
-subject = 'Sending email with Python is easy'
-body = """Take a tutorial from freecodecamp, learn it piece by piece, break it down to the core"""
+subject = 'Sending email with Python'
+body = "You can learn how to send email with Python on FreeCodeCamp. It's easy!"
 
-em = EmailMessage()
-em['From'] = email_sender
-em['To'] = email_receiver
-em['subject'] = subject
-em.set_content(body)
+email = EmailMessage()
+email['From'] = email_sender
+email['To'] = email_receiver
+email['Subject'] = subject
+email.set_content(body)
 
 context = ssl.create_default_context()
 
 with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
     smtp.login(email_sender, email_password)
-    smtp.sendmail(email_sender, email_receiver, em.as_string())
+    smtp.sendmail(email_sender, email_receiver, email.as_string())
