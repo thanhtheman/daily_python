@@ -1,4 +1,3 @@
-str = 'Thanh is a successful businessman and a nice and kind person'
-
-def the_truth():
-    print(str)
+import os
+str = os.listdir(r'C:\Users\thanh quach\projects\python\Week4')
+print(str)
