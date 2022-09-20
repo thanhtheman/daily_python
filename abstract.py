@@ -1,29 +1,32 @@
 from abc import ABC, abstractmethod
 
-# class Automobile(ABC):
-#     @abstractmethod
-#     def turn_on_engine(self):
-#         pass
-#     def brake_system(self):
-#         pass
+#1st example
+class Automobile(ABC):
+    @abstractmethod
+    def turn_on_engine(self):
+        pass
+    def brake_system(self):
+        pass
 
-# class Toyota(Automobile):
-#     def turn_on_engine(self):
-#         print('Press the button')
+class Toyota(Automobile):
+    def turn_on_engine(self):
+        print('Press the button')
     
-#     def brake_system(self):
-#         print('Normal hydraulic brake')
+    def brake_system(self):
+        print('Normal hydraulic brake')
 
-# class BMW(Automobile):
-#     def turn_on_engine(self):
-#         print('Say TURN ON')
-#     def brake_system(self):
-#         print('Smart Brake')
+class BMW(Automobile):
+    def turn_on_engine(self):
+        print('Say TURN ON')
+    def brake_system(self):
+        print('Smart Brake')
 
-# a = Toyota()
-# a.turn_on_engine()
-# b = BMW()
-# b.brake_system()
+a = Toyota()
+a.turn_on_engine()
+b = BMW()
+b.brake_system()
+
+#2nd example
 
 class Bank(ABC):
     @abstractmethod
@@ -56,3 +59,6 @@ s = Swiss()
 print(s.basicinfo())
 s.withdraw(30)
 s.withdraw(1000)
+
+
+

@@ -19,3 +19,14 @@
 #         file2.write(file.readline())
 # write_first_line_to_file('test.txt', 'new.txt')
 
+# list = []
+# file = open('new.txt', 'r')
+# for x in file.readlines():
+#     list.append(x)
+# list.reverse()
+# print(list)
+
+def read_file(file_name):
+    file = open(file_name, 'r')
+    print(file.read())
+read_file('new.txt')
