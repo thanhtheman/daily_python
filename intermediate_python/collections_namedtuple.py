@@ -25,5 +25,11 @@ print(d)
 print(list(d)[0])
 
 d.popleft()
+d.extend([45,47,89])
 
+print(d)
+
+d.extendleft([56,89,100])
+print(d)
+d.rotate()
 print(d)
