@@ -1,0 +1,16 @@
+Python is actually compiled before it is interpreted?
+
+compiler = tranlating byte code to the machine code to be executed
+interpreter = read the high level code to (check if there is any error) and translate them into byte code
+python is run line by line on live (ie. real time), not pre-compiled as other languages.
+
+Example
+class Dog:
+ def __init__(self):
+    self.bark()
+
+This code will be run OK although we have not defined the bark method yet.
+The compiler doesn't pick up this error, we will have trouble when putting this code in production.
+This is why this feature of Python is both a good thing and a bad thing. It doesn't check the logic, 
+as long as your syntax is valid, it will run.
+
