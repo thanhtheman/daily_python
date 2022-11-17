@@ -24,6 +24,11 @@ def validate_email(email) -> Result:
 async def index(request: Request):
     return Response(dispatch(await request.body()))
 
+@app.get('/')
+async def get_data():
+    return {"message": "Hello World"}
+
+
 
 if __name__ == "__main__":
     uvicorn.run(app, port=5000)
