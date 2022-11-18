@@ -26,13 +26,14 @@ def handle_client(conn, addr):
     while connected:
         #this is blocking line because it won't move forward until we receive the message from the client. We need to specify how many bytes to receive.
         msg_length = conn.recv(HEADER).decode(FORMAT)
-        msg_length = int(msg_length)
-        #this is where we receive the message, the previous one is all about the length.
-        msg = conn.recv(msg_length).decode(FORMAT)
-        if msg == DISCONNECT_MESSAGE:
-            connected = False
-        print(f'{addr} {msg}')
-        conn.send('Msg Received'.encode(FORMAT))
+        if msg_length:
+            msg_length = int(msg_length)
+            #this is where we receive the message, the previous one is all about the length.
+            msg = conn.recv(msg_length).decode(FORMAT)
+            if msg == DISCONNECT_MESSAGE:
+                connected = False
+            print(f'{addr} {msg}')
+            conn.send('Message received'.encode())
     conn.close()
 
 def start():
