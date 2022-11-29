@@ -1,6 +1,6 @@
 import jwt
-from fastapi import HttpException, Security
-from fastapi.security import HttpAuthorizationCredentials, HTTPBearer
+from fastapi import HTTPException, Security
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 
@@ -26,12 +26,16 @@ class Auth_Handler():
     
     def decode(self, token):
         try:
-            payload = jwt.decode(payload, self.secret, algorithms=['HS256'])
+            payload = jwt.decode(token, self.secret, algorithms=['HS256'])
             return payload['sub']
         except jwt.ExpiredSignatureError:
-            raise HttpException(status_code=404, detail='Token has expired')
+            raise HTTPException(status_code=404, detail='Token has expired')
         except jwt.InvalidTokenError as e:
-            raise HttpException(status_code=404, detail='Invalid Token')
-        
-    def auth_wrapper(self, auth: HttpAuthorizationCredentials = Security(security)):
+            raise HTTPException(status_code=404, detail='Invalid Token')
+#the token is usually stored in the header of the request. Thus, to access the protected resource
+# we need to check if the token is valid.
+# the Security will take in HTTPBearer which stores the token
+# we wrap this token in the HTTP AuthorizationCredentials, then we can access the token 
+# by access its credentials.  
+    def auth_wrapper(self, auth: HTTPAuthorizationCredentials = Security(security)):
         return self.decode(auth.credentials)
