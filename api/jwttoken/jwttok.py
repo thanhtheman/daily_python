@@ -1,40 +1,39 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
+from auth import Auth_Hanlder
 from schema import Auth_Details
-from auth import Auth_Handler
 
 app = FastAPI()
-
-auth_handle = Auth_Handler()
 users = []
+auth_handle = Auth_Hanlder()
 
 @app.post('/register')
-def register(user_input: Auth_Details):
+def register(auth_details: Auth_Details):
     for x in users:
-        if user_input.username == x['username']:
-            raise HTTPException(status_code=400, detail='Username is already taken!')
-    hashed_password = auth_handle.get_password_hash(user_input.password)
-    users.append({'username': user_input.username, 'password': hashed_password})
+        if auth_details.username == x['username']:
+            raise HTTPException(status_code=400, detail='This username has already been taken!')
+    hashed_password = auth_handle.get_hash_password(auth_details.password)
+    users.append({'username': auth_details.username, 'password': hashed_password})
     print(users)
-    return {'result':'You have successfully created your account'}
+    return {'status': 'You have successfully created an account with us'}
+
 
 @app.post('/login')
-def login(user_input: Auth_Details):
+def login(auth_details: Auth_Details):
     user = None
     for x in users:
-        if x['username'] == user_input.username:
+        if auth_details.username == x['username']:
             user = x
             break
-    if (user is None) or (not auth_handle.verify_password(user_input.password, user['password'])):
-        raise HTTPException(status_code=400, detail='Invalid Username or Password')
+    if (user is None) or (not auth_handle.verify_password(auth_details.password, user['password'])):
+        raise HTTPException(status_code=400, detail='Username or Password is incorrect')
     token = auth_handle.encode(user['username'])
-    return {'result': token}
+    return {'status':'You have successfully logged in',
+            'token': token}
 
 @app.get('/')
-def unprotected_routes():
-    return {'name': 'unprotected routes'}
+def resources():
+    return {'type': 'unprotected resources'}
 
 @app.get('/protected')
 def protected_routes(username=Depends(auth_handle.auth_wrapper)):
-    return {'status': username + ' is authorized',
-            'post':'secret passcode is 123456'}
-    
+    return {'status': username + ' now have access to premium resources'}

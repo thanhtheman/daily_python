@@ -1,0 +1,17 @@
+JWT Token
+Step 1 - The routes
+We will create the FastAPI Server
+We will need 4 routes: 1 route for register as a user, 1 route for login, 1 route for access public resources, 1 route for protected resources
+
+Step 2 - authentication
+We need to hash the password
+
+When user log in, we need to verify the password
+
+We need to encode to create the Token
+
+we need to decode to verify the user when they access protected resources
+
+Step 3 - Data schema
+
+For log in info, we need to standardize it with specific type like string
